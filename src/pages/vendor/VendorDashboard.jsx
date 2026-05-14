@@ -2,6 +2,7 @@ import { useContext, useMemo } from 'react';
 import { AppContext } from '../../context/AppContext';
 import { useNavigate } from 'react-router-dom';
 import { FileText, Receipt, Truck, CreditCard, Clock, CheckCircle, PlusCircle, ArrowRight } from 'lucide-react';
+import clsx from 'clsx';
 
 export default function VendorDashboard() {
   const { user, pos, invoices, shipments, payments, vendors } = useContext(AppContext);

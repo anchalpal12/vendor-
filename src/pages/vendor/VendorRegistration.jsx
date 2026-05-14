@@ -37,7 +37,7 @@ export default function VendorRegistration() {
       if (!formData.contactName) newErrors.contactName = "Contact name is required";
       if (!formData.email) {
         newErrors.email = "Email is required";
-      } else if (!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(formData.email)) {
+      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
         newErrors.email = "Invalid email format";
       }
       if (!formData.phone) newErrors.phone = "Phone number is required";

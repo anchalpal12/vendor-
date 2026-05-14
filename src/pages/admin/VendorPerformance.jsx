@@ -2,6 +2,7 @@ import { useContext, useMemo } from 'react';
 import { AppContext } from '../../context/AppContext';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 import { Star, StarHalf, TrendingUp, TrendingDown, Minus } from 'lucide-react';
+import clsx from 'clsx';
 
 export default function VendorPerformance() {
   const { vendors } = useContext(AppContext);
