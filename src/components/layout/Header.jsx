@@ -1,9 +1,9 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AppContext } from '../../context/AppContext';
-import { LogOut, Bell, User } from 'lucide-react';
+import { LogOut, Bell, User, Menu } from 'lucide-react';
 
-export default function Header() {
+export default function Header({ toggleSidebar }) {
   const location = useLocation();
   const navigate = useNavigate();
   const { logout, user } = useContext(AppContext);
@@ -17,20 +17,28 @@ export default function Header() {
   };
 
   return (
-    <header className="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-6 shadow-sm z-10">
-      <div className="flex items-center text-sm text-slate-500 font-medium">
-        {pathnames.map((name, index) => {
-          const isLast = index === pathnames.length - 1;
-          const formattedName = name.charAt(0).toUpperCase() + name.slice(1).replace('-', ' ');
-          return (
-            <div key={name} className="flex items-center">
-              {index > 0 && <span className="mx-2 text-slate-300">/</span>}
-              <span className={isLast ? 'text-slate-900 font-semibold' : ''}>
-                {formattedName}
-              </span>
-            </div>
-          );
-        })}
+    <header className="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-4 sm:px-6 shadow-sm z-10 shrink-0">
+      <div className="flex items-center">
+        <button 
+          className="mr-3 md:hidden p-2 -ml-2 text-slate-400 hover:text-slate-600 rounded-md"
+          onClick={toggleSidebar}
+        >
+          <Menu className="w-6 h-6" />
+        </button>
+        <div className="flex items-center text-sm text-slate-500 font-medium hidden sm:flex">
+          {pathnames.map((name, index) => {
+            const isLast = index === pathnames.length - 1;
+            const formattedName = name.charAt(0).toUpperCase() + name.slice(1).replace('-', ' ');
+            return (
+              <div key={name} className="flex items-center">
+                {index > 0 && <span className="mx-2 text-slate-300">/</span>}
+                <span className={isLast ? 'text-slate-900 font-semibold' : ''}>
+                  {formattedName}
+                </span>
+              </div>
+            );
+          })}
+        </div>
       </div>
 
       <div className="flex items-center space-x-4">

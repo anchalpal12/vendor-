@@ -259,35 +259,37 @@ export default function PurchaseOrders() {
             <p className="text-slate-600">{vendor?.contactName} ({vendor?.email})</p>
           </div>
 
-          <table className="min-w-full divide-y divide-slate-200 mb-8">
-             <thead className="bg-slate-50">
-               <tr>
-                 <th className="px-4 py-3 text-left text-xs font-semibold text-slate-500 uppercase">Description</th>
-                 <th className="px-4 py-3 text-right text-xs font-semibold text-slate-500 uppercase">Qty</th>
-                 <th className="px-4 py-3 text-right text-xs font-semibold text-slate-500 uppercase">Rate</th>
-                 <th className="px-4 py-3 text-right text-xs font-semibold text-slate-500 uppercase">Amount</th>
-               </tr>
-             </thead>
-             <tbody className="divide-y divide-slate-200">
-                {formData.lineItems.map((item, idx) => {
-                  const product = products.find(p => p.id === item.productId);
-                  return (
-                    <tr key={idx}>
-                      <td className="px-4 py-3 text-sm text-slate-900">{product ? `${product.name} (${product.sku})` : 'Item'}</td>
-                      <td className="px-4 py-3 text-sm text-slate-600 text-right">{item.quantity}</td>
-                      <td className="px-4 py-3 text-sm text-slate-600 text-right">${item.rate.toFixed(2)}</td>
-                      <td className="px-4 py-3 text-sm font-medium text-slate-900 text-right">${(item.quantity * item.rate).toFixed(2)}</td>
-                    </tr>
-                  )
-                })}
-             </tbody>
-             <tfoot>
-               <tr>
-                 <td colSpan="3" className="px-4 py-4 text-right font-bold text-slate-900">Total Amount</td>
-                 <td className="px-4 py-4 text-right font-bold text-indigo-600 text-lg">${calculateTotal().toFixed(2)}</td>
-               </tr>
-             </tfoot>
-          </table>
+          <div className="overflow-x-auto">
+            <table className="min-w-full divide-y divide-slate-200 mb-8">
+               <thead className="bg-slate-50">
+                 <tr>
+                   <th className="px-4 py-3 text-left text-xs font-semibold text-slate-500 uppercase">Description</th>
+                   <th className="px-4 py-3 text-right text-xs font-semibold text-slate-500 uppercase">Qty</th>
+                   <th className="px-4 py-3 text-right text-xs font-semibold text-slate-500 uppercase">Rate</th>
+                   <th className="px-4 py-3 text-right text-xs font-semibold text-slate-500 uppercase">Amount</th>
+                 </tr>
+               </thead>
+               <tbody className="divide-y divide-slate-200">
+                  {formData.lineItems.map((item, idx) => {
+                    const product = products.find(p => p.id === item.productId);
+                    return (
+                      <tr key={idx}>
+                        <td className="px-4 py-3 text-sm text-slate-900">{product ? `${product.name} (${product.sku})` : 'Item'}</td>
+                        <td className="px-4 py-3 text-sm text-slate-600 text-right">{item.quantity}</td>
+                        <td className="px-4 py-3 text-sm text-slate-600 text-right">${item.rate.toFixed(2)}</td>
+                        <td className="px-4 py-3 text-sm font-medium text-slate-900 text-right">${(item.quantity * item.rate).toFixed(2)}</td>
+                      </tr>
+                    )
+                  })}
+               </tbody>
+               <tfoot>
+                 <tr>
+                   <td colSpan="3" className="px-4 py-4 text-right font-bold text-slate-900">Total Amount</td>
+                   <td className="px-4 py-4 text-right font-bold text-indigo-600 text-lg">${calculateTotal().toFixed(2)}</td>
+                 </tr>
+               </tfoot>
+            </table>
+          </div>
 
           <div className="flex justify-end space-x-4 pt-6">
             <button onClick={() => setView('create')} className="px-6 py-2 text-slate-600 border border-slate-300 hover:bg-slate-50 rounded-lg font-medium transition-colors">
